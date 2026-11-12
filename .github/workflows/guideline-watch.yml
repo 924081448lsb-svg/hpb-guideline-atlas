@@ -1,0 +1,30 @@
+name: Weekly guideline watch
+
+on:
+  schedule:
+    # Monday 09:15 Asia/Shanghai
+    - cron: "15 1 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Scan PubMed guideline updates
+        run: node scripts/check-guideline-updates.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GUIDELINE_LOOKBACK_DAYS: "120"
+
