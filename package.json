@@ -1,0 +1,13 @@
+{
+  "name": "hpb-guideline-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "肝胆胰恶性肿瘤指南导航站",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "index:fulltext": "node scripts/build-fulltext-index.mjs",
+    "check": "node --check app.js && node --check data/guidelines.js && node --check server.mjs"
+  }
+}

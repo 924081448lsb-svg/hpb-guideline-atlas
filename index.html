@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="肝胆胰恶性肿瘤指南导航：集中查看肝癌、胆道肿瘤、胰腺癌的中国与国际权威指南，并提供 PubMed 更新雷达。"
+    />
+    <meta name="theme-color" content="#f4efe5" />
+    <meta property="og:title" content="肝胆胰指南库｜把最新版，放在诊桌旁" />
+    <meta
+      property="og:description"
+      content="肝癌、胆道肿瘤与胰腺癌指南的一站式权威入口。"
+    />
+    <meta property="og:type" content="website" />
+    <title>肝胆胰指南库｜HPB Guideline Atlas</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./tools.css" />
+  </head>
+  <body>
+    <div class="page-noise" aria-hidden="true"></div>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="肝胆胰指南库首页">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" role="img">
+            <path
+              d="M9.6 10.5c5.7-1.6 9.8 2.9 15 2.2 3.4-.5 6.3-2.9 9.1.7 4.2 5.6-1.4 16.8-9.8 19.6-5.6 1.9-10.5-1.5-13.3-6.4-3.5-6.2-5.6-14-1-16.1Z"
+            />
+            <path d="M15.7 17.8c5.6.4 7 4.8 8.4 9.1.8 2.7 2.8 3.6 4.9 2.2" />
+            <circle cx="15" cy="17.8" r="2.2" />
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong>肝胆胰指南库</strong>
+          <small>HPB GUIDELINE ATLAS</small>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="主导航">
+        <a class="active" href="#library">指南库</a>
+        <a href="#fulltext">全文检索</a>
+        <a href="#clinical">临床快查</a>
+        <a href="#mdt">MDT</a>
+        <a href="#compare">版本对照</a>
+        <a href="#radar">更新雷达</a>
+        <a href="#sources">来源导航</a>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          class="icon-button theme-toggle"
+          type="button"
+          aria-label="切换深浅色主题"
+          title="切换主题"
+        >
+          <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.1 15.5A8.5 8.5 0 0 1 8.5 3.9 8.5 8.5 0 1 0 20.1 15.5Z" />
+          </svg>
+        </button>
+        <button class="search-button" type="button" data-focus-search>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" />
+            <path d="m16 16 4 4" />
+          </svg>
+          <span>搜索指南</span>
+          <kbd>/</kbd>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            HPB ONCOLOGY · 证据导航
+          </div>
+          <h1 id="hero-title">
+            把最新版，<br />
+            放在<span>诊桌旁</span>。
+          </h1>
+          <p class="hero-lead">
+            一站直达肝癌、胆道肿瘤与胰腺癌的权威指南。版本、机构、适用场景与原文入口，
+            在同一处清楚呈现。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#library">
+              浏览指南
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M14 7l5 5-5 5" />
+              </svg>
+            </a>
+            <button class="button button-secondary" type="button" id="heroVerifyButton">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M20 11a8 8 0 1 0-2.3 6.3M20 4v7h-7" />
+              </svg>
+              核验 PubMed 版本
+            </button>
+          </div>
+          <form class="hero-search" id="heroFulltextForm" role="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4 4" />
+            </svg>
+            <input
+              id="heroFulltextSearchInput"
+              type="search"
+              autocomplete="off"
+              placeholder="直接搜索全文：门静脉癌栓、NALIRIFOX、FGFR2…"
+              aria-label="全文检索"
+            />
+            <button type="submit">检索全文</button>
+          </form>
+          <div class="hero-meta">
+            <div>
+              <strong id="totalGuidelineCount">27</strong>
+              <span>权威指南与专题</span>
+            </div>
+            <div>
+              <strong>3</strong>
+              <span>肝胆胰核心瘤种</span>
+            </div>
+            <div>
+              <strong id="sourceCount">8</strong>
+              <span>官方来源入口</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="肝胆胰指南数据图谱装饰">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="orbit orbit-three"></div>
+          <div class="anatomy-wrap">
+            <svg
+              class="anatomy"
+              viewBox="0 0 500 520"
+              role="img"
+              aria-label="风格化的肝脏、胆道与胰腺插图"
+            >
+              <defs>
+                <linearGradient id="liverGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#bf7350" />
+                  <stop offset="1" stop-color="#8e4634" />
+                </linearGradient>
+                <linearGradient id="pancreasGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#d9b55c" />
+                  <stop offset="1" stop-color="#b98734" />
+                </linearGradient>
+                <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feDropShadow dx="0" dy="18" stdDeviation="18" flood-opacity=".16" />
+                </filter>
+              </defs>
+              <path
+                class="liver-shape"
+                d="M97 162c50-38 101-12 137-5 27 6 52-15 82-22 68-16 114 29 96 91-18 63-80 121-151 150-62 26-119 13-157-37-35-46-59-135-7-177Z"
+                fill="url(#liverGrad)"
+                filter="url(#softShadow)"
+              />
+              <path
+                class="liver-lobe"
+                d="M245 178c42 16 42 69 12 114-26 39-60 69-96 91"
+              />
+              <path class="vessel" d="M141 201c41 13 54 45 91 55 41 11 61 38 72 68" />
+              <path class="vessel fine" d="M199 159c-8 42-2 74 18 105" />
+              <path class="vessel fine" d="M288 160c22 21 27 51 18 83" />
+              <path
+                class="bile-duct"
+                d="M233 254c15 53 24 95 31 140M264 282c-4 40-3 78 3 112M233 395c18-13 45-12 66 1"
+              />
+              <path
+                class="pancreas-shape"
+                d="M250 410c57-21 102 7 135-10 27-14 53-7 53 18 0 24-27 37-56 25-23-10-43 20-72 20-35 0-54-20-60-53Z"
+                fill="url(#pancreasGrad)"
+                filter="url(#softShadow)"
+              />
+              <path class="pancreas-detail" d="M273 428c41-9 83 8 113-14M347 421c9 13 22 17 40 14" />
+              <circle class="lesion" cx="197" cy="244" r="12" />
+              <circle class="lesion-ring" cx="197" cy="244" r="25" />
+            </svg>
+          </div>
+
+          <div class="floating-card floating-card-one">
+            <span class="floating-kicker">LIVER / 2026</span>
+            <strong>肝癌诊疗指南</strong>
+            <span>国家卫健委 · 2026 版</span>
+          </div>
+          <div class="floating-card floating-card-two">
+            <span class="status-dot"></span>
+            <div>
+              <strong>NCCN LIVE</strong>
+              <span>官方页面持续更新</span>
+            </div>
+          </div>
+          <div class="floating-card floating-card-three">
+            <span class="floating-kicker">BTC / 2026.1</span>
+            <strong>ASCO Living</strong>
+            <span>晚期胆道肿瘤</span>
+          </div>
+          <div class="visual-caption">
+            <span>HCC</span>
+            <span>BTC</span>
+            <span>PDAC</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="资料库状态">
+        <div class="trust-item">
+          <span class="pulse-dot"></span>
+          <div>
+            <small>最近人工核验</small>
+            <strong id="reviewDate">2026.11.11</strong>
+          </div>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3 4.5 6v5.5c0 4.5 3 7.8 7.5 9.5 4.5-1.7 7.5-5 7.5-9.5V6L12 3Z" />
+            <path d="m8.7 12 2 2 4.5-4.5" />
+          </svg>
+          <div>
+            <small>入口原则</small>
+            <strong>官方链接 · 不替代原文</strong>
+          </div>
+        </div>
+        <div class="trust-divider"></div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 4h14v16H5z" />
+            <path d="M8 8h8M8 12h8M8 16h5" />
+          </svg>
+          <div>
+            <small>版本策略</small>
+            <strong>出版日期 + 官方实时入口</strong>
+          </div>
+        </div>
+        <button class="trust-action" type="button" id="verifyButton">
+          <span class="verify-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 11a8 8 0 1 0-2.3 6.3M20 4v7h-7" />
+            </svg>
+          </span>
+          <span>
+            <small id="verifyLabel">同步最新元数据</small>
+            <strong id="verifyStatus">检查中…</strong>
+          </span>
+        </button>
+      </section>
+
+      <section class="fulltext-section section-shell" id="fulltext">
+        <div class="section-heading">
+          <div>
+            <div class="section-index">01 / FULL-TEXT SEARCH</div>
+            <h2>指南全文检索</h2>
+            <p>直接检索站内 12 份 PDF，返回命中原文、指南名称、版本和可跳转页码。</p>
+          </div>
+          <div class="fulltext-index-status" id="fulltextIndexStatus">
+            <span></span>
+            正在载入全文索引
+          </div>
+        </div>
+        <div class="fulltext-panel">
+          <div class="fulltext-searchbar">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4 4" />
+            </svg>
+            <input
+              id="fulltextSearchInput"
+              type="search"
+              autocomplete="off"
+              placeholder="搜索全文，例如：门静脉癌栓、NALIRIFOX、FGFR2、Child-Pugh C"
+            />
+            <button type="button" id="clearFulltextSearch">清除</button>
+          </div>
+          <div class="fulltext-controls">
+            <div class="fulltext-organ-filters" id="fulltextOrganFilters">
+              <button class="active" type="button" data-fulltext-organ="all">全部</button>
+              <button type="button" data-fulltext-organ="liver">肝癌</button>
+              <button type="button" data-fulltext-organ="biliary">胆道肿瘤</button>
+              <button type="button" data-fulltext-organ="pancreas">胰腺癌</button>
+            </div>
+            <div class="fulltext-examples">
+              <span>快捷检索</span>
+              <button type="button" data-fulltext-query="门静脉癌栓">门静脉癌栓</button>
+              <button type="button" data-fulltext-query="NALIRIFOX">NALIRIFOX</button>
+              <button type="button" data-fulltext-query="FGFR2">FGFR2</button>
+              <button type="button" data-fulltext-query="Child-Pugh C">Child-Pugh C</button>
+            </div>
+          </div>
+          <div class="fulltext-results" id="fulltextResults" aria-live="polite">
+            <div class="fulltext-placeholder">
+              <span>SEARCH INSIDE / 原文定位</span>
+              <h3>输入一个临床词，直接跳到原文页码</h3>
+              <p>支持中文与英文关键词，结果来自本地保存的公开全文 PDF。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="staging-home section-shell" id="staging" aria-labelledby="stagingTitle">
+        <div class="staging-widget">
+          <div class="staging-widget-head">
+            <div class="staging-title-group">
+              <span class="staging-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 5h14v14H5zM8 9h8M8 12h5M8 15h7" />
+                </svg>
+              </span>
+              <div>
+                <span class="staging-kicker">STAGING DESK · 分期速查</span>
+                <h2 id="stagingTitle">先看分期，再找指南</h2>
+              </div>
+            </div>
+            <div class="staging-tabs" id="stagingTabs" role="tablist" aria-label="选择肿瘤类型"></div>
+          </div>
+          <div class="staging-widget-body">
+            <div class="staging-stage-list" id="stagingStageList" role="tablist" aria-label="选择分期"></div>
+            <article class="staging-detail" id="stagingDetail" aria-live="polite"></article>
+          </div>
+          <div class="staging-widget-foot">
+            <span>速查工具，不替代影像、病理、肝功能与 MDT 评估</span>
+            <button class="staging-guide-link" type="button" id="stagingGuideLink"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="library-section section-shell" id="library">
+        <div class="section-heading">
+          <div>
+            <div class="section-index">02 / GUIDELINE LIBRARY</div>
+            <h2>指南资料库</h2>
+            <p>按瘤种、地区与文件类型筛选；选择卡片查看收录说明和引用信息。</p>
+          </div>
+          <div class="library-summary">
+            <span id="resultCount">27</span>
+            <small>份指南 / 专题</small>
+          </div>
+        </div>
+
+        <div class="china-guideline-banner">
+          <div class="china-mark" aria-hidden="true">
+            <strong>CN</strong>
+            <small>LOCAL</small>
+          </div>
+          <div class="china-banner-copy">
+            <span>CHINA CLINICAL GUIDELINES</span>
+            <h3>中国指南专区</h3>
+            <p>集中收录国家规范、中华医学会、CSCO 及国内多中心共识，优先呈现中国临床场景。</p>
+          </div>
+          <div class="china-banner-count">
+            <strong id="chinaGuidelineCount">12</strong>
+            <span>份中国指南与共识</span>
+          </div>
+          <button class="china-filter-button" type="button" id="chinaShortcut" aria-pressed="false">
+            仅看中国指南
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M14 7l5 5-5 5" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="filter-panel">
+          <div class="organ-tabs" role="tablist" aria-label="按瘤种筛选">
+            <button class="organ-tab active" type="button" data-organ="all" role="tab">
+              全部
+              <span id="allGuidelineCount">27</span>
+            </button>
+            <button class="organ-tab" type="button" data-organ="liver" role="tab">
+              <i class="organ-color rust"></i>
+              肝癌
+              <span id="liverGuidelineCount">10</span>
+            </button>
+            <button class="organ-tab" type="button" data-organ="biliary" role="tab">
+              <i class="organ-color gold"></i>
+              胆道肿瘤
+              <span id="biliaryGuidelineCount">8</span>
+            </button>
+            <button class="organ-tab" type="button" data-organ="pancreas" role="tab">
+              <i class="organ-color teal"></i>
+              胰腺癌
+              <span id="pancreasGuidelineCount">9</span>
+            </button>
+          </div>
+
+          <div class="filter-row">
+            <label class="search-field">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4 4" />
+              </svg>
+              <input
+                id="searchInput"
+                type="search"
+                autocomplete="off"
+                placeholder="搜索指南、机构或临床主题，如“系统治疗”"
+              />
+              <kbd>⌘ K</kbd>
+            </label>
+
+            <select id="regionFilter" aria-label="按地区筛选">
+              <option value="all">全部地区</option>
+              <option value="china">中国</option>
+              <option value="international">国际</option>
+            </select>
+
+            <select id="typeFilter" aria-label="按指南类型筛选">
+              <option value="all">全部类型</option>
+              <option value="guideline">综合指南</option>
+              <option value="focused">专题指南</option>
+              <option value="living">动态指南</option>
+              <option value="update">专题更新</option>
+              <option value="consensus">共识 / 路径</option>
+            </select>
+
+            <select id="sortFilter" aria-label="排序方式">
+              <option value="newest">按最新发布</option>
+              <option value="recommended">优先推荐</option>
+              <option value="title">按名称排序</option>
+            </select>
+
+            <button class="access-filter" type="button" id="openAccessFilter" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 10V7a5 5 0 0 1 9.5-2M5 10h14v10H5z" />
+                <path d="M12 14v2" />
+              </svg>
+              开放全文
+              <span id="openAccessCount">15</span>
+            </button>
+
+            <button class="local-filter" type="button" id="localAccessFilter" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3v12M7 10l5 5 5-5M5 20h14" />
+              </svg>
+              站内全文
+              <span id="localAccessCount">12</span>
+            </button>
+
+            <button class="saved-filter" type="button" id="savedFilter" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m12 3 2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.8-5.4 2.8 1-6-4.3-4.2 6-.9L12 3Z" />
+              </svg>
+              只看收藏
+              <span id="savedCount">0</span>
+            </button>
+          </div>
+
+          <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+        </div>
+
+        <div class="guideline-grid" id="guidelineGrid" aria-live="polite"></div>
+
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="empty-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4 4M8.5 11h5" />
+            </svg>
+          </div>
+          <h3>没有找到匹配的指南</h3>
+          <p>尝试减少筛选条件，或更换一个临床关键词。</p>
+          <button class="text-button" type="button" id="resetFilters">清除全部筛选</button>
+        </div>
+      </section>
+
+      <section class="clinical-section" id="clinical">
+        <div class="section-shell">
+          <div class="section-heading light">
+            <div>
+              <div class="section-index">03 / CLINICAL SHORTCUTS</div>
+              <h2>从临床问题出发</h2>
+              <p>不必记住完整指南目录，从一个具体决策节点进入。</p>
+            </div>
+            <div class="shortcut-note">
+              <span>提示</span>
+              点击主题会自动筛选上方指南库
+            </div>
+          </div>
+
+          <div class="clinical-grid">
+            <article class="clinical-card clinical-liver">
+              <div class="clinical-card-top">
+                <span class="clinical-code">01 · HCC</span>
+                <span class="clinical-organ">肝脏</span>
+              </div>
+              <h3>肝癌</h3>
+              <p>从高危筛查到转化、切除与晚期系统治疗。</p>
+              <div class="shortcut-links">
+                <button type="button" data-shortcut="筛查与诊断">筛查与诊断 <span>↗</span></button>
+                <button type="button" data-shortcut="分期评估">分期与肝功能 <span>↗</span></button>
+                <button type="button" data-shortcut="系统治疗">系统治疗 <span>↗</span></button>
+              </div>
+              <div class="clinical-mark" aria-hidden="true">HCC</div>
+            </article>
+
+            <article class="clinical-card clinical-biliary">
+              <div class="clinical-card-top">
+                <span class="clinical-code">02 · BTC</span>
+                <span class="clinical-organ">胆道</span>
+              </div>
+              <h3>胆道肿瘤</h3>
+              <p>按解剖部位、分子特征和治疗阶段定位证据。</p>
+              <div class="shortcut-links">
+                <button type="button" data-shortcut="肝内胆管癌">按肿瘤部位 <span>↗</span></button>
+                <button type="button" data-shortcut="分子检测">分子检测 <span>↗</span></button>
+                <button type="button" data-shortcut="围手术期">围手术期 <span>↗</span></button>
+              </div>
+              <div class="clinical-mark" aria-hidden="true">BTC</div>
+            </article>
+
+            <article class="clinical-card clinical-pancreas">
+              <div class="clinical-card-top">
+                <span class="clinical-code">03 · PDAC</span>
+                <span class="clinical-organ">胰腺</span>
+              </div>
+              <h3>胰腺癌</h3>
+              <p>围绕可切除性评估与围手术期治疗构建路径。</p>
+              <div class="shortcut-links">
+                <button type="button" data-shortcut="可切除性">可切除性 <span>↗</span></button>
+                <button type="button" data-shortcut="新辅助">新辅助治疗 <span>↗</span></button>
+                <button type="button" data-shortcut="转移性治疗">转移性治疗 <span>↗</span></button>
+              </div>
+              <div class="clinical-mark" aria-hidden="true">PDAC</div>
+            </article>
+          </div>
+
+          <div class="checklist">
+            <div class="checklist-intro">
+              <span>READY CHECK</span>
+              <h3>打开指南之前，先定位四个变量</h3>
+            </div>
+            <ol>
+              <li><span>1</span>肿瘤部位、病理与分子信息</li>
+              <li><span>2</span>分期、可切除性与肝功能状态</li>
+              <li><span>3</span>当前治疗阶段与既往治疗线</li>
+              <li><span>4</span>本地药物、技术及转诊资源</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="mdt-section section-shell" id="mdt">
+        <div class="section-heading">
+          <div>
+            <div class="section-index">04 / MDT WORKSHEET</div>
+            <h2>MDT 一页纸</h2>
+            <p>整理关键信息与待讨论问题，生成可打印、可复制的结构化摘要。数据只在当前浏览器内处理。</p>
+          </div>
+          <div class="mdt-privacy">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 4.5 6v5.5c0 4.5 3 7.8 7.5 9.5 4.5-1.7 7.5-5 7.5-9.5V6L12 3Z" />
+            </svg>
+            请勿填写姓名、住院号等身份信息
+          </div>
+        </div>
+
+        <div class="mdt-workbench">
+          <form class="mdt-form" id="mdtForm">
+            <div class="mdt-field">
+              <label for="mdtCancer">肿瘤类型</label>
+              <select id="mdtCancer" name="cancer" required>
+                <option value="">请选择</option>
+                <option>肝细胞癌</option>
+                <option>肝内胆管癌</option>
+                <option>肝门部胆管癌</option>
+                <option>远端胆管癌</option>
+                <option>胆囊癌</option>
+                <option>胰腺导管腺癌</option>
+              </select>
+            </div>
+            <div class="mdt-field">
+              <label for="mdtStage">分期 / 疾病范围</label>
+              <input id="mdtStage" name="stage" placeholder="如 CNLC Ⅲa、AJCC Ⅲ、转移性" />
+            </div>
+            <div class="mdt-field">
+              <label for="mdtStatus">体能及器官功能</label>
+              <input id="mdtStatus" name="status" placeholder="ECOG PS、Child-Pugh、黄疸、营养状态" />
+            </div>
+            <div class="mdt-field">
+              <label for="mdtResectability">可切除性</label>
+              <select id="mdtResectability" name="resectability">
+                <option value="">尚未确定</option>
+                <option>可切除</option>
+                <option>临界可切除</option>
+                <option>局部进展不可切除</option>
+                <option>转移性</option>
+              </select>
+            </div>
+            <div class="mdt-field mdt-field-wide">
+              <label for="mdtPathology">病理与分子信息</label>
+              <input id="mdtPathology" name="pathology" placeholder="病理类型、分化、淋巴结、切缘、IDH1/FGFR2/HER2/KRAS/BRCA/MSI 等" />
+            </div>
+            <div class="mdt-field mdt-field-wide">
+              <label for="mdtTreatment">既往治疗与当前问题</label>
+              <textarea id="mdtTreatment" name="treatment" rows="3" placeholder="手术、局部治疗、系统治疗线次、疗效与毒性；本次 MDT 希望回答的问题"></textarea>
+            </div>
+            <div class="mdt-actions mdt-field-wide">
+              <button class="button button-primary" type="submit">
+                生成 MDT 一页纸
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M14 7l5 5-5 5" />
+                </svg>
+              </button>
+              <button class="text-button" type="reset" id="resetMdt">清空</button>
+            </div>
+          </form>
+
+          <div class="mdt-preview" id="mdtPreview" aria-live="polite">
+            <div class="mdt-preview-empty">
+              <span>MDT SUMMARY</span>
+              <h3>填写后生成讨论摘要</h3>
+              <p>输出仅作为沟通模板，不生成诊断或治疗结论。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="compare-section" id="compare">
+        <div class="section-shell">
+          <div class="section-heading compare-heading">
+            <div>
+              <div class="section-index">05 / VERSION DIFF</div>
+              <h2>版本对照</h2>
+              <p>选择指南版本，直接查看新增、强化、修订与不再推荐的内容。每项变化都回到原文位置。</p>
+            </div>
+            <div class="compare-principle">
+              <span>CHANGE LOG</span>
+              只对照可核验的原文差异
+            </div>
+          </div>
+
+          <div class="compare-shell">
+            <aside class="compare-sidebar">
+              <span class="compare-sidebar-title">选择对照</span>
+              <div class="comparison-tabs" id="comparisonTabs"></div>
+              <div class="compare-legend">
+                <span class="change-badge added">新增</span>
+                <span class="change-badge strengthened">强化</span>
+                <span class="change-badge revised">修订</span>
+                <span class="change-badge removed">删除 / 降级</span>
+              </div>
+              <p class="compare-sidebar-note">
+                对照是阅读辅助，不代替对两版原文及勘误的完整核对。
+              </p>
+            </aside>
+
+            <div class="compare-main">
+              <div id="comparisonHeader"></div>
+              <div id="comparisonContent" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="matrix-section section-shell" id="matrix">
+        <div class="section-heading">
+          <div>
+            <div class="section-index">06 / CROSS-GUIDELINE MATRIX</div>
+            <h2>指南间差异矩阵</h2>
+            <p>围绕同一临床问题，横向查看中国、ASCO、ESMO 与 NCCN 的共识、差异和证据边界。</p>
+          </div>
+          <div class="matrix-status">
+            <span>LIVE SNAPSHOT</span>
+            以当前收录版本为准
+          </div>
+        </div>
+        <div class="matrix-shell">
+          <div class="matrix-question-tabs" id="matrixTabs"></div>
+          <div class="matrix-content" id="matrixContent"></div>
+        </div>
+      </section>
+
+      <section class="radar-section section-shell" id="radar">
+        <div class="section-heading">
+          <div>
+            <div class="section-index">07 / UPDATE RADAR</div>
+            <h2>PubMed 更新雷达</h2>
+            <p>联网检索近期指南类文献，提供线索；是否适用于具体患者仍需阅读原文。</p>
+          </div>
+          <button class="button button-ghost" type="button" id="refreshRadar">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 11a8 8 0 1 0-2.3 6.3M20 4v7h-7" />
+            </svg>
+            刷新雷达
+          </button>
+        </div>
+
+        <div class="radar-status">
+          <span class="live-indicator"><i></i> PUBMED LIVE</span>
+          <span id="radarStatus">正在建立联网检索…</span>
+          <span id="radarTime"></span>
+        </div>
+
+        <div class="radar-columns">
+          <article class="radar-column" data-radar-organ="liver">
+            <div class="radar-column-head">
+              <span class="organ-color rust"></span>
+              <h3>肝癌</h3>
+              <small>HCC</small>
+            </div>
+            <div class="radar-list">
+              <div class="loading-lines"><i></i><i></i><i></i></div>
+            </div>
+          </article>
+          <article class="radar-column" data-radar-organ="biliary">
+            <div class="radar-column-head">
+              <span class="organ-color gold"></span>
+              <h3>胆道肿瘤</h3>
+              <small>BTC</small>
+            </div>
+            <div class="radar-list">
+              <div class="loading-lines"><i></i><i></i><i></i></div>
+            </div>
+          </article>
+          <article class="radar-column" data-radar-organ="pancreas">
+            <div class="radar-column-head">
+              <span class="organ-color teal"></span>
+              <h3>胰腺癌</h3>
+              <small>PDAC</small>
+            </div>
+            <div class="radar-list">
+              <div class="loading-lines"><i></i><i></i><i></i></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="radar-footnote">
+          <span>数据说明</span>
+          <p>
+            雷达通过 PubMed E-utilities 检索题名中含相关瘤种且文献类型为 Guideline
+            的记录。结果用于发现更新线索，并不代表已经完成临床适用性评价。
+          </p>
+        </div>
+      </section>
+
+      <section class="sources-section" id="sources">
+        <div class="section-shell">
+          <div class="section-heading">
+            <div>
+              <div class="section-index">08 / PRIMARY SOURCES</div>
+              <h2>直达原始来源</h2>
+              <p>建议收藏这些官方入口，版本与登录要求以来源网站为准。</p>
+            </div>
+          </div>
+          <div class="source-grid" id="sourceGrid"></div>
+        </div>
+      </section>
+
+      <section class="method-section">
+        <div class="section-shell method-grid">
+          <div class="method-intro">
+            <div class="section-index">OUR METHOD</div>
+            <h2>如何判定“最新”</h2>
+            <p>
+              单一发布日期并不足以代表临床最新状态。资料库同时保留正式出版日期、
+              动态版本号与官方实时入口，避免把旧版文献误认为当前推荐。
+            </p>
+          </div>
+          <div class="method-steps">
+            <div class="method-step">
+              <span>01</span>
+              <div>
+                <h3>来源优先</h3>
+                <p>优先收录国家卫健委、NCCN、ESMO、ASCO、IHPBA 等原始发布机构。</p>
+              </div>
+            </div>
+            <div class="method-step">
+              <span>02</span>
+              <div>
+                <h3>版本分层</h3>
+                <p>综合指南、动态指南和专题更新分开标记，避免版本混用。</p>
+              </div>
+            </div>
+            <div class="method-step">
+              <span>03</span>
+              <div>
+                <h3>回到原文</h3>
+                <p>目录只负责导航；治疗推荐必须回到当前官方全文及勘误页面核对。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-main section-shell">
+        <div>
+          <a class="brand footer-brand" href="#top">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 44 44">
+                <path
+                  d="M9.6 10.5c5.7-1.6 9.8 2.9 15 2.2 3.4-.5 6.3-2.9 9.1.7 4.2 5.6-1.4 16.8-9.8 19.6-5.6 1.9-10.5-1.5-13.3-6.4-3.5-6.2-5.6-14-1-16.1Z"
+                />
+                <path d="M15.7 17.8c5.6.4 7 4.8 8.4 9.1.8 2.7 2.8 3.6 4.9 2.2" />
+              </svg>
+            </span>
+            <span class="brand-copy">
+              <strong>肝胆胰指南库</strong>
+              <small>HPB GUIDELINE ATLAS</small>
+            </span>
+          </a>
+          <p>为肝胆胰肿瘤多学科诊疗整理的一条清晰的证据入口。</p>
+        </div>
+        <div class="footer-links">
+          <a href="#library">指南库</a>
+          <a href="#fulltext">全文检索</a>
+          <a href="#clinical">临床快查</a>
+          <a href="#mdt">MDT 一页纸</a>
+          <a href="#compare">版本对照</a>
+          <a href="#radar">更新雷达</a>
+          <a href="#sources">来源导航</a>
+        </div>
+      </div>
+      <div class="footer-bottom section-shell">
+        <p>
+          仅供医疗专业人员查阅指南入口。内容不构成诊疗建议，不能替代原始指南、机构流程与临床判断。
+        </p>
+        <span>目录核验于 <b id="footerReviewDate">2026.11.11</b></span>
+      </div>
+    </footer>
+
+    <div class="drawer-scrim" id="drawerScrim" hidden></div>
+    <aside
+      class="detail-drawer"
+      id="detailDrawer"
+      aria-hidden="true"
+      aria-labelledby="drawerTitle"
+    >
+      <div class="drawer-header">
+        <span>GUIDELINE RECORD</span>
+        <button class="icon-button" type="button" id="closeDrawer" aria-label="关闭详情">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="drawer-content" id="drawerContent"></div>
+    </aside>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
