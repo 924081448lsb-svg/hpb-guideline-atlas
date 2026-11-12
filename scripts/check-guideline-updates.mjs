@@ -3,6 +3,11 @@ import { GUIDELINES } from "../data/guidelines.js";
 
 const LOOKBACK_DAYS = Number(process.env.GUIDELINE_LOOKBACK_DAYS || 120);
 const EUtilsBase = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
+const EUtilsIdentity = {
+  tool: "hpb_guideline_atlas",
+  email: process.env.NCBI_EMAIL || "924081448lsb-svg@users.noreply.github.com",
+  ...(process.env.NCBI_API_KEY ? { api_key: process.env.NCBI_API_KEY } : {})
+};
 
 const cancerQueries = [
   {
@@ -37,17 +42,27 @@ const knownPmids = new Set(
   GUIDELINES.map((guideline) => guideline.pmid).filter(Boolean)
 );
 
-const fetchJson = async (url) => {
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      "User-Agent": "hpb-guideline-atlas/1.0"
+const fetchJson = async (url, attempts = 5) => {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "User-Agent": "hpb-guideline-atlas/1.0"
+        }
+      });
+      if (response.ok) return response.json();
+      lastError = new Error(`Request failed ${response.status}: ${url}`);
+      if (![429, 500, 502, 503, 504].includes(response.status)) throw lastError;
+    } catch (error) {
+      lastError = error;
     }
-  });
-  if (!response.ok) {
-    throw new Error(`Request failed ${response.status}: ${url}`);
+    if (attempt < attempts) {
+      await new Promise((resolve) => setTimeout(resolve, attempt * 2000));
+    }
   }
-  return response.json();
+  throw lastError;
 };
 
 const candidates = [];
@@ -62,7 +77,8 @@ for (const source of cancerQueries) {
     sort: "pub date",
     datetype: "pdat",
     mindate: formatDate(minDate),
-    maxdate: formatDate(maxDate)
+    maxdate: formatDate(maxDate),
+    ...EUtilsIdentity
   });
   const search = await fetchJson(`${EUtilsBase}/esearch.fcgi?${params}`);
   const ids = search.esearchresult?.idlist || [];
@@ -75,7 +91,8 @@ for (const source of cancerQueries) {
   const summaryParams = new URLSearchParams({
     db: "pubmed",
     id: ids.join(","),
-    retmode: "json"
+    retmode: "json",
+    ...EUtilsIdentity
   });
   const summary = await fetchJson(`${EUtilsBase}/esummary.fcgi?${summaryParams}`);
 
