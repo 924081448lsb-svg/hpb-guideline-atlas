@@ -49,5 +49,5 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, () => {
-  console.log(`肝胆胰指南库已启动：http://localhost:${port}`);
+  console.log(`肝胆胰疾病已启动：http://localhost:${port}`);
 });

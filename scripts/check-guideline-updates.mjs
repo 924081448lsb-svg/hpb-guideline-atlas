@@ -9,7 +9,7 @@ const EUtilsIdentity = {
   ...(process.env.NCBI_API_KEY ? { api_key: process.env.NCBI_API_KEY } : {})
 };
 
-const cancerQueries = [
+const updateQueries = [
   {
     organ: "肝癌",
     term: '("hepatocellular carcinoma"[Title] OR "liver cancer"[Title]) AND guideline[Publication Type]'
@@ -23,6 +23,11 @@ const cancerQueries = [
     organ: "胰腺癌",
     term:
       '("pancreatic cancer"[Title] OR "pancreatic adenocarcinoma"[Title]) AND guideline[Publication Type]'
+  },
+  {
+    organ: "胆道损伤",
+    term:
+      '("bile duct injury"[Title/Abstract] OR "bile duct injuries"[Title/Abstract] OR "biliary injury"[Title/Abstract]) AND (guideline[Publication Type] OR consensus[Title] OR recommendation*[Title])'
   }
 ];
 
@@ -68,7 +73,7 @@ const fetchJson = async (url, attempts = 5) => {
 const candidates = [];
 const checkedSources = [];
 
-for (const source of cancerQueries) {
+for (const source of updateQueries) {
   const params = new URLSearchParams({
     db: "pubmed",
     term: source.term,

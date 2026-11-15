@@ -1,5 +1,5 @@
 export const SITE_META = {
-  lastReviewed: "2026-11-12",
+  lastReviewed: "2026-11-15",
   reviewNote:
     "目录与官方入口已人工核验。实时版本、适用人群和推荐内容请始终以原始指南页面为准。"
 };
@@ -12,10 +12,10 @@ export const ORGANS = {
     description: "肝细胞癌的筛查、诊断、分期与全病程治疗"
   },
   biliary: {
-    label: "胆道肿瘤",
-    short: "BTC",
+    label: "胆道疾病",
+    short: "BILIARY",
     accent: "gold",
-    description: "胆管癌、胆囊癌及相关胆道恶性肿瘤"
+    description: "胆道肿瘤与良性疾病，包括胆囊切除相关胆管损伤"
   },
   pancreas: {
     label: "胰腺癌",
@@ -35,7 +35,8 @@ export const TYPES = {
   focused: "专题指南",
   living: "动态指南",
   update: "专题更新",
-  consensus: "共识 / 路径"
+  consensus: "共识 / 路径",
+  research: "研究证据"
 };
 
 export const GUIDELINES = [
@@ -561,6 +562,215 @@ export const GUIDELINES = [
       "Pan-Asian adapted ESMO Clinical Practice Guidelines for the diagnosis, treatment and follow-up of patients with biliary tract cancer."
   },
   {
+    id: "bdi-china-prevention-2024",
+    title: "腹腔镜胆囊切除术中胆管及血管损伤防范中国专家共识（2024版）",
+    shortTitle: "中国胆管及血管损伤防范共识 2024",
+    organ: "biliary",
+    region: "china",
+    type: "consensus",
+    source: "中华医学会外科学分会胆道外科学组 / 中国医师协会外科医师分会胆道外科专家工作组",
+    sourceShort: "CMA / CMDA",
+    displayVersion: "2024 版",
+    updatedAt: "2024-03-01",
+    updatedLabel: "2024.03 发表",
+    featured: true,
+    status: "中国共识",
+    access: "account",
+    summary:
+      "面向腹腔镜胆囊切除术的国内专家共识，聚焦胆管与血管损伤的危险因素、解剖辨识、关键安全操作、术中处置及培训体系。",
+    why:
+      "适合术前风险分层、困难胆囊决策、术中胆管损伤识别与科室安全流程建设；知网提供题录与摘要，全文下载通常需要账号或机构权限。",
+    scope: ["胆管损伤", "血管损伤", "困难胆囊", "关键安全视野", "术中处置"],
+    officialUrl:
+      "https://read.cnki.net/web/Journal/Article/ZGWK202403002.html",
+    officialLabel: "打开知网原文入口",
+    accessNote:
+      "本站不镜像受版权保护的全文；全文阅读或下载权限以中国知网和期刊页面为准。",
+    doi: "",
+    pmid: "",
+    citation:
+      "中华医学会外科学分会胆道外科学组, 中国医师协会外科医师分会胆道外科专家工作组. 腹腔镜胆囊切除术中胆管及血管损伤防范中国专家共识（2024版）[J]. 中国实用外科杂志, 2024, 44(3): 9-18, 23.",
+    pubmedTitle: ""
+  },
+  {
+    id: "bdi-safe-cholecystectomy-2020",
+    title: "胆囊切除术中预防胆管损伤多学会实践指南与共识",
+    shortTitle: "Safe Cholecystectomy Multi-society Consensus",
+    organ: "biliary",
+    region: "international",
+    type: "guideline",
+    source: "SAGES / AHPBA / IHPBA / SSAT / EAES",
+    sourceShort: "Multi-society",
+    displayVersion: "2020",
+    updatedAt: "2020-07-01",
+    updatedLabel: "2020.07 发表",
+    featured: false,
+    status: "预防指南",
+    access: "abstract",
+    summary:
+      "由五个国际外科组织开展的多学会实践指南，围绕 18 个关键问题形成安全胆囊切除和胆管损伤预防建议，采用 GRADE 方法。",
+    why:
+      "适合建立胆囊切除安全操作、术中影像使用、困难病例处置与疑似损伤转诊的标准流程；多数推荐因证据确定性低而为条件推荐。",
+    scope: ["关键安全视野", "术中胆道影像", "困难胆囊", "损伤预防", "转诊"],
+    officialUrl: "https://pubmed.ncbi.nlm.nih.gov/32404658/",
+    officialLabel: "查看 PubMed 摘要与原文入口",
+    doi: "10.1097/SLA.0000000000003791",
+    pmid: "32404658",
+    citation:
+      "Brunt LM, Deziel DJ, Telem DA, et al. Safe Cholecystectomy Multi-society Practice Guideline and State of the Art Consensus Conference on Prevention of Bile Duct Injury During Cholecystectomy. Ann Surg. 2020;272(1):3-23.",
+    pubmedTitle:
+      "Safe Cholecystectomy Multi-society Practice Guideline and State of the Art Consensus Conference on Prevention of Bile Duct Injury During Cholecystectomy."
+  },
+  {
+    id: "bdi-sages-ahpba-2025",
+    title: "SAGES-AHPBA 2025 胆囊切除术后胆管损伤手术处理指南",
+    shortTitle: "SAGES-AHPBA Bile Duct Injury 2025",
+    organ: "biliary",
+    region: "international",
+    type: "guideline",
+    source: "Society of American Gastrointestinal and Endoscopic Surgeons / Americas Hepato-Pancreato-Biliary Association",
+    sourceShort: "SAGES / AHPBA",
+    displayVersion: "2025",
+    updatedAt: "2025-11-20",
+    updatedLabel: "2025.11 在线发表",
+    featured: true,
+    status: "2025 国际指南",
+    access: "abstract",
+    summary:
+      "聚焦胆囊切除术后胆管损伤确定性修复的时机与方式，采用 GRADE 形成修复时机、微创或开放、非手术或手术以及胆肠吻合方式建议。",
+    why:
+      "适合损伤已确诊后的修复路径讨论。指南总体证据确定性低至极低，具体决策仍需结合损伤分型、感染控制、术者经验和 HPB 中心条件。",
+    scope: ["胆管损伤", "修复时机", "胆肠吻合", "微创修复", "HPB 转诊"],
+    officialUrl: "https://pubmed.ncbi.nlm.nih.gov/41266841/",
+    officialLabel: "查看 PubMed 摘要与原文入口",
+    doi: "10.1007/s00464-025-12352-6",
+    pmid: "41266841",
+    citation:
+      "Calabrese EC, Slater BJ, Awad Z, et al. SAGES-AHPBA 2025 guideline for the surgical management of bile duct injury following cholecystectomy. Surg Endosc. 2026;40(1):1-17.",
+    pubmedTitle:
+      "SAGES-AHPBA 2025 guideline for the surgical management of bile duct injury following cholecystectomy."
+  },
+  {
+    id: "bdi-sages-ahpba-review-2025",
+    title: "SAGES-AHPBA 2025 胆管损伤手术处理系统综述与 Meta 分析",
+    shortTitle: "SAGES-AHPBA BDI Evidence Review",
+    organ: "biliary",
+    region: "international",
+    type: "research",
+    source: "SAGES / AHPBA Guideline Panel",
+    sourceShort: "SAGES / AHPBA",
+    displayVersion: "2025 证据基础",
+    updatedAt: "2025-12-01",
+    updatedLabel: "2025.12 发表",
+    featured: false,
+    status: "指南证据",
+    access: "abstract",
+    summary:
+      "支撑 SAGES-AHPBA 2025 胆管损伤指南的系统综述与 Meta 分析，汇总确定性修复时机、路径及胆肠吻合方式的比较证据。",
+    why:
+      "适合需要追踪指南推荐背后证据的人群，可核对研究数量、比较方向与证据空白，不应脱离指南单独外推。",
+    scope: ["系统综述", "Meta 分析", "修复时机", "修复方式", "证据分级"],
+    officialUrl: "https://pubmed.ncbi.nlm.nih.gov/41193912/",
+    officialLabel: "查看 PubMed 摘要与原文入口",
+    doi: "10.1007/s00464-025-12357-1",
+    pmid: "41193912",
+    citation:
+      "Esparham A, Calabrese EC, Ganescu O, et al. SAGES-AHPBA 2025: a systematic review and meta-analysis on the surgical management of bile duct injury following cholecystectomy. Surg Endosc. 2025;39(12):7905-7925.",
+    pubmedTitle:
+      "SAGES-AHPBA 2025: a systematic review and meta-analysis on the surgical management of bile duct injury following cholecystectomy."
+  },
+  {
+    id: "bdi-life-meta-2025",
+    title: "胆囊切除术后医源性胆管损伤管理：1995—2025 系统综述与 Meta 分析",
+    shortTitle: "Iatrogenic BDI Management Meta-analysis",
+    organ: "biliary",
+    region: "international",
+    type: "research",
+    source: "Life (Basel) / MDPI",
+    sourceShort: "Life",
+    displayVersion: "2025",
+    updatedAt: "2025-12-03",
+    updatedLabel: "2025.12 发表",
+    featured: true,
+    status: "开放全文",
+    access: "open",
+    localPdf: "./assets/pdfs/bdi-life-meta-2025.pdf",
+    localPdfPages: 23,
+    summary:
+      "纳入 28 项研究、超过 18,000 例患者的管理证据汇总：手术修复成功率高于内镜治疗，HPB 中心转诊与并发症降低相关，修复时机需结合感染控制和患者稳定度。",
+    why:
+      "适合快速读取胆管损伤治疗路径的量化证据；结论来自观察性研究和二次汇总，需注意原始研究异质性及适应证差异。",
+    scope: ["系统综述", "Meta 分析", "修复时机", "HPB 转诊", "狭窄与成功率"],
+    officialUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12734171/",
+    officialLabel: "直接阅读 PMC 全文",
+    doi: "10.3390/life15121858",
+    pmid: "41465797",
+    citation:
+      "Piriianu C, Toma EA, Enciu O, et al. Management of Iatrogenic Bile-Duct Injury After Cholecystectomy, 1995-2025: Systematic Review and Meta-Analysis. Life (Basel). 2025;15(12):1858.",
+    pubmedTitle:
+      "Management of Iatrogenic Bile-Duct Injury After Cholecystectomy, 1995-2025: Systematic Review and Meta-Analysis."
+  },
+  {
+    id: "bdi-minimally-invasive-2026",
+    title: "医源性胆管损伤微创修复的安全性与疗效：系统综述与 Meta 分析",
+    shortTitle: "Minimally Invasive BDI Repair Meta-analysis",
+    organ: "biliary",
+    region: "international",
+    type: "research",
+    source: "Surgical Endoscopy",
+    sourceShort: "Surg Endosc",
+    displayVersion: "2026",
+    updatedAt: "2026-03-30",
+    updatedLabel: "2026.03 在线发表",
+    featured: false,
+    status: "开放全文",
+    access: "open",
+    localPdf: "./assets/pdfs/bdi-minimally-invasive-2026.pdf",
+    localPdfPages: 19,
+    summary:
+      "汇总 16 项研究、246 例微创胆管损伤修复：总体并发症 16.2%，胆漏 4.8%，吻合口狭窄 3.9%，中转开放 2.3%。",
+    why:
+      "适合了解腹腔镜或机器人修复的短期结果与技术边界。现有证据以病例系列为主，不能据此把微创修复推广为所有损伤的首选。",
+    scope: ["微创修复", "腹腔镜", "机器人", "胆肠吻合", "术后并发症"],
+    officialUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC13161001/",
+    officialLabel: "直接阅读 PMC 全文",
+    doi: "10.1007/s00464-026-12715-7",
+    pmid: "42377515",
+    citation:
+      "Alogakos M, Ghani A, Ayesh AR, et al. Minimally invasive repair of iatrogenic bile duct injuries: a systematic review and meta-analysis. Surg Endosc. 2026;40(5):3609-3627.",
+    pubmedTitle:
+      "Minimally invasive repair of iatrogenic bile duct injuries: a systematic review and meta-analysis."
+  },
+  {
+    id: "bdi-china-endoscopic-vs-surgery-2023",
+    title: "迟发性医源性胆管损伤：内镜与外科治疗的倾向评分匹配研究",
+    shortTitle: "中国迟发性胆管损伤内镜与手术比较",
+    organ: "biliary",
+    region: "china",
+    type: "research",
+    source: "中华医学杂志 / 兰州大学第一医院",
+    sourceShort: "NCM / LZU",
+    displayVersion: "2023",
+    updatedAt: "2023-10-01",
+    updatedLabel: "2023.10 发表",
+    featured: false,
+    status: "中国研究",
+    access: "abstract",
+    summary:
+      "129 例 SG 1～2 级迟发性医源性胆管损伤的回顾性队列，匹配后各 48 例；在胆管连续性存在的患者中，内镜治疗手术时间和住院更短、严重并发症更少。",
+    why:
+      "适合了解中国单中心真实世界证据；结论限于特定分型、胆管连续性和有经验的诊疗团队，不能直接外推至横断或高位复杂损伤。",
+    scope: ["内镜治疗", "外科修复", "Strasberg-Bismuth E1", "倾向评分匹配", "中国队列"],
+    officialUrl: "https://pubmed.ncbi.nlm.nih.gov/37653989/",
+    officialLabel: "查看 PubMed 摘要与原文入口",
+    doi: "10.3760/cma.j.cn112139-20230119-00033",
+    pmid: "37653989",
+    citation:
+      "Han HT, Yue P, Meng WB, et al. The comparison between endoscopic and surgical treatment of delayed iatrogenic bile duct injury by propensity score matching. Zhonghua Wai Ke Za Zhi. 2023;61(10):871-879.",
+    pubmedTitle:
+      "The comparison between endoscopic and surgical treatment of delayed iatrogenic bile duct injury by propensity score matching."
+  },
+  {
     id: "pdac-nccn",
     title: "NCCN 胰腺腺癌临床实践指南",
     shortTitle: "NCCN Pancreatic Adenocarcinoma",
@@ -868,6 +1078,13 @@ export const SOURCE_DIRECTORY = [
     mark: "A"
   },
   {
+    name: "SAGES",
+    abbreviation: "SAGES",
+    description: "美国胃肠内镜外科医师学会，胆管损伤与安全胆囊切除指南入口",
+    url: "https://www.sages.org/publications/guidelines/",
+    mark: "S"
+  },
+  {
     name: "IHPBA",
     abbreviation: "IHPBA",
     description: "国际肝胆胰协会，关注全球与资源分层场景",
@@ -890,9 +1107,9 @@ export const RADAR_QUERIES = {
       '("hepatocellular carcinoma"[Title] OR "liver cancer"[Title]) AND guideline[Publication Type]'
   },
   biliary: {
-    label: "胆道",
+    label: "胆道疾病与损伤",
     query:
-      '("biliary tract cancer"[Title] OR cholangiocarcinoma[Title]) AND guideline[Publication Type]'
+      '(("biliary tract cancer"[Title] OR cholangiocarcinoma[Title]) OR ("bile duct injury"[Title/Abstract] OR "biliary injury"[Title/Abstract])) AND (guideline[Publication Type] OR consensus[Title])'
   },
   pancreas: {
     label: "胰腺",

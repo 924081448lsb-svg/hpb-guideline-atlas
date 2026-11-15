@@ -13,7 +13,7 @@ import { STAGING_GROUPS } from "./data/staging.js";
 
 const SHORT_TITLES = {
   liver: "HCC",
-  biliary: "BTC",
+  biliary: "BILIARY",
   pancreas: "PDAC"
 };
 
@@ -776,7 +776,7 @@ const renderFulltextResults = () => {
   elements.fulltextResults.innerHTML = `
     <div class="fulltext-results-head">
       <strong>${top.length} 个原文命中</strong>
-      <span>${escapeHtml(query)} · ${state.fulltextOrgan === "all" ? "全部癌种" : ORGAN_TITLE(state.fulltextOrgan)}</span>
+      <span>${escapeHtml(query)} · ${state.fulltextOrgan === "all" ? "全部疾病" : ORGAN_TITLE(state.fulltextOrgan)}</span>
     </div>
     <div class="fulltext-result-list">
       ${top
@@ -885,9 +885,9 @@ const renderEmptyMdt = () => {
 
 const buildMdtSummary = (formData) => {
   const fields = [
-    ["肿瘤类型", formData.get("cancer")],
-    ["分期 / 范围", formData.get("stage")],
-    ["可切除性", formData.get("resectability")],
+    ["疾病 / 肿瘤类型", formData.get("cancer")],
+    ["分期 / 范围 / 损伤分型", formData.get("stage")],
+    ["范围 / 可切除性", formData.get("resectability")],
     ["体能及器官功能", formData.get("status")],
     ["病理与分子", formData.get("pathology")],
     ["既往治疗 / MDT 问题", formData.get("treatment")]

@@ -16,5 +16,7 @@ These files were downloaded from publicly accessible pages and are served locall
 | `pdac-panasia-2025.pdf` | 28 | PMC / ESMO Open | Open access |
 | `pdac-esmo-2025.pdf` | 4 | PMC / ESMO Open | Open access |
 | `pdac-rediscover-2024.pdf` | 10 | PMC / Annals of Surgery | Open access |
+| `bdi-life-meta-2025.pdf` | 23 | PMC / Life (Basel) | CC BY |
+| `bdi-minimally-invasive-2026.pdf` | 19 | PMC / Surgical Endoscopy | CC BY |
 
 PDFs that require a subscription, institutional login, or NCCN registration are not mirrored locally.

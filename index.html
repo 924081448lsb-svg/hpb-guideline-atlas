@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="肝胆胰恶性肿瘤指南导航：集中查看肝癌、胆道肿瘤、胰腺癌的中国与国际权威指南，并提供 PubMed 更新雷达。"
+      content="肝胆胰疾病证据导航：集中查看肝癌、胆道肿瘤、胰腺癌及胆管损伤的中国与国际指南、专家共识和临床研究，并提供全文检索与 PubMed 更新雷达。"
     />
     <meta name="theme-color" content="#f4efe5" />
-    <meta property="og:title" content="肝胆胰指南库｜把最新版，放在诊桌旁" />
+    <meta property="og:title" content="肝胆胰疾病｜把最新证据，放在诊桌旁" />
     <meta
       property="og:description"
-      content="肝癌、胆道肿瘤与胰腺癌指南的一站式权威入口。"
+      content="肝癌、胆道肿瘤、胰腺癌与胆管损伤指南、共识及研究的一站式证据入口。"
     />
     <meta property="og:type" content="website" />
-    <title>肝胆胰指南库｜HPB Guideline Atlas</title>
+    <title>肝胆胰疾病｜HPB Disease Atlas</title>
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./tools.css" />
@@ -22,7 +22,7 @@
   <body>
     <div class="page-noise" aria-hidden="true"></div>
     <header class="site-header" id="top">
-      <a class="brand" href="#top" aria-label="肝胆胰指南库首页">
+      <a class="brand" href="#top" aria-label="肝胆胰疾病首页">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 44 44" role="img">
             <path
@@ -33,8 +33,8 @@
           </svg>
         </span>
         <span class="brand-copy">
-          <strong>肝胆胰指南库</strong>
-          <small>HPB GUIDELINE ATLAS</small>
+          <strong>肝胆胰疾病</strong>
+          <small>HPB DISEASE ATLAS</small>
         </span>
       </a>
 
@@ -80,15 +80,15 @@
         <div class="hero-copy">
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
-            HPB ONCOLOGY · 证据导航
+            HPB DISEASES · 证据导航
           </div>
           <h1 id="hero-title">
             把最新版，<br />
             放在<span>诊桌旁</span>。
           </h1>
           <p class="hero-lead">
-            一站直达肝癌、胆道肿瘤与胰腺癌的权威指南。版本、机构、适用场景与原文入口，
-            在同一处清楚呈现。
+            一站直达肝癌、胆道肿瘤、胰腺癌与胆囊切除相关胆管损伤的权威指南、专家共识和关键研究。
+            版本、机构、证据层级与原文入口，在同一处清楚呈现。
           </p>
           <div class="hero-actions">
             <a class="button button-primary" href="#library">
@@ -113,28 +113,28 @@
               id="heroFulltextSearchInput"
               type="search"
               autocomplete="off"
-              placeholder="直接搜索全文：门静脉癌栓、NALIRIFOX、FGFR2…"
+              placeholder="直接搜索全文：胆管损伤、Strasberg、NALIRIFOX、FGFR2…"
               aria-label="全文检索"
             />
             <button type="submit">检索全文</button>
           </form>
           <div class="hero-meta">
             <div>
-              <strong id="totalGuidelineCount">27</strong>
-              <span>权威指南与专题</span>
+              <strong id="totalGuidelineCount">34</strong>
+              <span>指南、共识与研究</span>
             </div>
             <div>
               <strong>3</strong>
-              <span>肝胆胰核心瘤种</span>
+              <span>肝胆胰疾病域</span>
             </div>
             <div>
-              <strong id="sourceCount">8</strong>
+              <strong id="sourceCount">9</strong>
               <span>官方来源入口</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-visual" aria-label="肝胆胰指南数据图谱装饰">
+        <div class="hero-visual" aria-label="肝胆胰疾病数据图谱装饰">
           <div class="orbit orbit-one"></div>
           <div class="orbit orbit-two"></div>
           <div class="orbit orbit-three"></div>
@@ -260,7 +260,7 @@
           <div>
             <div class="section-index">01 / FULL-TEXT SEARCH</div>
             <h2>指南全文检索</h2>
-            <p>直接检索站内 12 份 PDF，返回命中原文、指南名称、版本和可跳转页码。</p>
+            <p>直接检索站内 14 份 PDF，返回命中原文、指南名称、版本和可跳转页码。</p>
           </div>
           <div class="fulltext-index-status" id="fulltextIndexStatus">
             <span></span>
@@ -285,7 +285,7 @@
             <div class="fulltext-organ-filters" id="fulltextOrganFilters">
               <button class="active" type="button" data-fulltext-organ="all">全部</button>
               <button type="button" data-fulltext-organ="liver">肝癌</button>
-              <button type="button" data-fulltext-organ="biliary">胆道肿瘤</button>
+              <button type="button" data-fulltext-organ="biliary">胆道疾病</button>
               <button type="button" data-fulltext-organ="pancreas">胰腺癌</button>
             </div>
             <div class="fulltext-examples">
@@ -337,12 +337,12 @@
         <div class="section-heading">
           <div>
             <div class="section-index">02 / GUIDELINE LIBRARY</div>
-            <h2>指南资料库</h2>
-            <p>按瘤种、地区与文件类型筛选；选择卡片查看收录说明和引用信息。</p>
+            <h2>指南 · 共识 · 研究</h2>
+            <p>按疾病域、地区与证据类型筛选；指南推荐与原始研究分开展示。</p>
           </div>
           <div class="library-summary">
-            <span id="resultCount">27</span>
-            <small>份指南 / 专题</small>
+            <span id="resultCount">34</span>
+            <small>条证据记录</small>
           </div>
         </div>
 
@@ -357,11 +357,11 @@
             <p>集中收录国家规范、中华医学会、CSCO 及国内多中心共识，优先呈现中国临床场景。</p>
           </div>
           <div class="china-banner-count">
-            <strong id="chinaGuidelineCount">12</strong>
-            <span>份中国指南与共识</span>
+            <strong id="chinaGuidelineCount">14</strong>
+            <span>份中国指南、共识与研究</span>
           </div>
           <button class="china-filter-button" type="button" id="chinaShortcut" aria-pressed="false">
-            仅看中国指南
+            仅看中国资料
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h14M14 7l5 5-5 5" />
             </svg>
@@ -369,10 +369,10 @@
         </div>
 
         <div class="filter-panel">
-          <div class="organ-tabs" role="tablist" aria-label="按瘤种筛选">
+          <div class="organ-tabs" role="tablist" aria-label="按疾病域筛选">
             <button class="organ-tab active" type="button" data-organ="all" role="tab">
               全部
-              <span id="allGuidelineCount">27</span>
+              <span id="allGuidelineCount">34</span>
             </button>
             <button class="organ-tab" type="button" data-organ="liver" role="tab">
               <i class="organ-color rust"></i>
@@ -381,8 +381,8 @@
             </button>
             <button class="organ-tab" type="button" data-organ="biliary" role="tab">
               <i class="organ-color gold"></i>
-              胆道肿瘤
-              <span id="biliaryGuidelineCount">8</span>
+              胆道疾病
+              <span id="biliaryGuidelineCount">15</span>
             </button>
             <button class="organ-tab" type="button" data-organ="pancreas" role="tab">
               <i class="organ-color teal"></i>
@@ -401,7 +401,7 @@
                 id="searchInput"
                 type="search"
                 autocomplete="off"
-                placeholder="搜索指南、机构或临床主题，如“系统治疗”"
+                placeholder="搜索指南、机构或临床主题，如“胆管损伤”"
               />
               <kbd>⌘ K</kbd>
             </label>
@@ -419,6 +419,7 @@
               <option value="living">动态指南</option>
               <option value="update">专题更新</option>
               <option value="consensus">共识 / 路径</option>
+              <option value="research">研究证据</option>
             </select>
 
             <select id="sortFilter" aria-label="排序方式">
@@ -433,7 +434,7 @@
                 <path d="M12 14v2" />
               </svg>
               开放全文
-              <span id="openAccessCount">15</span>
+              <span id="openAccessCount">17</span>
             </button>
 
             <button class="local-filter" type="button" id="localAccessFilter" aria-pressed="false">
@@ -441,7 +442,7 @@
                 <path d="M12 3v12M7 10l5 5 5-5M5 20h14" />
               </svg>
               站内全文
-              <span id="localAccessCount">12</span>
+              <span id="localAccessCount">14</span>
             </button>
 
             <button class="saved-filter" type="button" id="savedFilter" aria-pressed="false">
@@ -503,17 +504,17 @@
 
             <article class="clinical-card clinical-biliary">
               <div class="clinical-card-top">
-                <span class="clinical-code">02 · BTC</span>
+                <span class="clinical-code">02 · BILIARY</span>
                 <span class="clinical-organ">胆道</span>
               </div>
-              <h3>胆道肿瘤</h3>
-              <p>按解剖部位、分子特征和治疗阶段定位证据。</p>
+              <h3>胆道疾病</h3>
+              <p>覆盖胆道肿瘤与胆囊切除相关胆管损伤。</p>
               <div class="shortcut-links">
+                <button type="button" data-shortcut="胆管损伤">胆管损伤 <span>↗</span></button>
                 <button type="button" data-shortcut="肝内胆管癌">按肿瘤部位 <span>↗</span></button>
-                <button type="button" data-shortcut="分子检测">分子检测 <span>↗</span></button>
-                <button type="button" data-shortcut="围手术期">围手术期 <span>↗</span></button>
+                <button type="button" data-shortcut="修复时机">损伤修复与转诊 <span>↗</span></button>
               </div>
-              <div class="clinical-mark" aria-hidden="true">BTC</div>
+              <div class="clinical-mark" aria-hidden="true">BIL</div>
             </article>
 
             <article class="clinical-card clinical-pancreas">
@@ -538,9 +539,9 @@
               <h3>打开指南之前，先定位四个变量</h3>
             </div>
             <ol>
-              <li><span>1</span>肿瘤部位、病理与分子信息</li>
-              <li><span>2</span>分期、可切除性与肝功能状态</li>
-              <li><span>3</span>当前治疗阶段与既往治疗线</li>
+              <li><span>1</span>疾病部位、病理与分子信息</li>
+              <li><span>2</span>分期、可切除性或胆管损伤分型</li>
+              <li><span>3</span>当前治疗阶段、修复时机与既往治疗</li>
               <li><span>4</span>本地药物、技术及转诊资源</li>
             </ol>
           </div>
@@ -565,7 +566,7 @@
         <div class="mdt-workbench">
           <form class="mdt-form" id="mdtForm">
             <div class="mdt-field">
-              <label for="mdtCancer">肿瘤类型</label>
+              <label for="mdtCancer">疾病 / 肿瘤类型</label>
               <select id="mdtCancer" name="cancer" required>
                 <option value="">请选择</option>
                 <option>肝细胞癌</option>
@@ -574,18 +575,19 @@
                 <option>远端胆管癌</option>
                 <option>胆囊癌</option>
                 <option>胰腺导管腺癌</option>
+                <option>胆囊切除术后胆管损伤</option>
               </select>
             </div>
             <div class="mdt-field">
-              <label for="mdtStage">分期 / 疾病范围</label>
-              <input id="mdtStage" name="stage" placeholder="如 CNLC Ⅲa、AJCC Ⅲ、转移性" />
+              <label for="mdtStage">分期 / 疾病范围 / 损伤分型</label>
+              <input id="mdtStage" name="stage" placeholder="如 CNLC Ⅲa、AJCC Ⅲ、Strasberg E3" />
             </div>
             <div class="mdt-field">
               <label for="mdtStatus">体能及器官功能</label>
               <input id="mdtStatus" name="status" placeholder="ECOG PS、Child-Pugh、黄疸、营养状态" />
             </div>
             <div class="mdt-field">
-              <label for="mdtResectability">可切除性</label>
+              <label for="mdtResectability">范围 / 可切除性</label>
               <select id="mdtResectability" name="resectability">
                 <option value="">尚未确定</option>
                 <option>可切除</option>
@@ -713,8 +715,8 @@
           <article class="radar-column" data-radar-organ="biliary">
             <div class="radar-column-head">
               <span class="organ-color gold"></span>
-              <h3>胆道肿瘤</h3>
-              <small>BTC</small>
+              <h3>胆道疾病</h3>
+              <small>BILIARY</small>
             </div>
             <div class="radar-list">
               <div class="loading-lines"><i></i><i></i><i></i></div>
@@ -735,8 +737,8 @@
         <div class="radar-footnote">
           <span>数据说明</span>
           <p>
-            雷达通过 PubMed E-utilities 检索题名中含相关瘤种且文献类型为 Guideline
-            的记录。结果用于发现更新线索，并不代表已经完成临床适用性评价。
+            雷达通过 PubMed E-utilities 检索肝胆胰肿瘤与胆管损伤相关指南、共识记录。
+            结果用于发现更新线索，并不代表已经完成临床适用性评价。
           </p>
         </div>
       </section>
@@ -804,11 +806,11 @@
               </svg>
             </span>
             <span class="brand-copy">
-              <strong>肝胆胰指南库</strong>
-              <small>HPB GUIDELINE ATLAS</small>
+              <strong>肝胆胰疾病</strong>
+              <small>HPB DISEASE ATLAS</small>
             </span>
           </a>
-          <p>为肝胆胰肿瘤多学科诊疗整理的一条清晰的证据入口。</p>
+          <p>为肝胆胰疾病多学科诊疗整理的一条清晰的证据入口。</p>
         </div>
         <div class="footer-links">
           <a href="#library">指南库</a>

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "肝胆胰恶性肿瘤指南导航站",
+  "description": "肝胆胰疾病指南、共识与研究导航站",
   "scripts": {
     "dev": "node server.mjs",
     "start": "node server.mjs",
