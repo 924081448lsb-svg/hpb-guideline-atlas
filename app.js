@@ -33,6 +33,277 @@ const ACCESS_META = {
 };
 
 const getAccess = (guideline) => guideline.access || "account";
+const fulltextLookupCache = new Map();
+
+const normalizeDoi = (doi = "") =>
+  String(doi).replace(/^https?:\/\/doi\.org\//i, "").trim();
+
+const safeExternalUrl = (value = "") => {
+  try {
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol) ? url.href : "";
+  } catch {
+    return "";
+  }
+};
+
+const getFulltextRoutes = (guideline) => {
+  const doi = normalizeDoi(guideline.doi);
+  const routes = [];
+
+  if (guideline.officialUrl) {
+    routes.push({
+      label: guideline.localPdf ? "原始来源" : guideline.officialLabel || "打开来源",
+      url: guideline.officialUrl
+    });
+  }
+  routes.push({
+    label: guideline.pmid ? `PubMed · ${guideline.pmid}` : "PubMed 检索",
+    url: guideline.pmid
+      ? `https://pubmed.ncbi.nlm.nih.gov/${guideline.pmid}/`
+      : `https://pubmed.ncbi.nlm.nih.gov/?term=${encodeURIComponent(guideline.pubmedTitle || guideline.title)}`
+  });
+  if (doi) {
+    routes.push({
+      label: "DOI 官方页面",
+      url: `https://doi.org/${doi}`
+    });
+  }
+  routes.push({
+    label: "Europe PMC",
+    url: guideline.pmid
+      ? `https://europepmc.org/search?query=${encodeURIComponent(`EXT_ID:${guideline.pmid} AND SRC:MED`)}`
+      : `https://europepmc.org/search?query=${encodeURIComponent(guideline.pubmedTitle || guideline.title)}`
+  });
+  if (doi) {
+    routes.push({
+      label: "OpenAlex 记录",
+      url: `https://openalex.org/works/doi:${doi}`
+    });
+  }
+
+  return routes.filter(
+    (route, index, items) =>
+      items.findIndex((item) => item.url === route.url) === index
+  );
+};
+
+const fetchJsonWithTimeout = async (url, timeoutMs = 8000) => {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, {
+      headers: { Accept: "application/json" },
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return await response.json();
+  } finally {
+    window.clearTimeout(timeout);
+  }
+};
+
+const getHostLabel = (url) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "开放来源";
+  }
+};
+
+const buildOpenLocation = ({ url, provider, license = "", version = "", pdf = false }) => {
+  const safeUrl = safeExternalUrl(url);
+  if (!safeUrl) return null;
+  return {
+    url: safeUrl,
+    provider,
+    host: getHostLabel(safeUrl),
+    license,
+    version,
+    pdf
+  };
+};
+
+const lookupOpenCopies = async (guideline) => {
+  const doi = normalizeDoi(guideline.doi);
+  const cacheKey = `${doi}|${guideline.pmid || ""}`;
+  const cached = fulltextLookupCache.get(cacheKey);
+  if (cached && Date.now() - cached.checkedAt < 10 * 60 * 1000) {
+    return cached.locations;
+  }
+
+  const requests = [];
+  if (doi) {
+    requests.push(
+      fetchJsonWithTimeout(
+        `https://api.openalex.org/works/${encodeURIComponent(`https://doi.org/${doi}`)}`
+      )
+    );
+  }
+  if (guideline.pmid) {
+    requests.push(
+      fetchJsonWithTimeout(
+        `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${encodeURIComponent(`EXT_ID:${guideline.pmid} AND SRC:MED`)}&format=json&resultType=core`
+      )
+    );
+  }
+
+  if (!requests.length) {
+    fulltextLookupCache.set(cacheKey, { checkedAt: Date.now(), locations: [] });
+    return [];
+  }
+
+  const settled = await Promise.allSettled(requests);
+  if (settled.every((result) => result.status === "rejected")) {
+    throw new Error("Open access lookup unavailable");
+  }
+  const locations = [];
+
+  settled.forEach((result) => {
+    if (result.status !== "fulfilled" || !result.value) return;
+    const data = result.value;
+
+    if (data.locations && data.open_access?.is_oa) {
+      data.locations
+        .filter((location) => location.is_oa)
+        .forEach((location) => {
+          const candidate = buildOpenLocation({
+            url: location.pdf_url || location.landing_page_url,
+            provider: "OpenAlex",
+            license: location.license || "",
+            version: location.version || "",
+            pdf: Boolean(location.pdf_url)
+          });
+          if (candidate) locations.push(candidate);
+        });
+    }
+
+    const europePmc = data.resultList?.result?.[0];
+    if (europePmc?.isOpenAccess === "Y") {
+      const openUrls = europePmc.fullTextUrlList?.fullTextUrl || [];
+      openUrls
+        .filter((item) => item.availabilityCode === "OA")
+        .forEach((item) => {
+          const candidate = buildOpenLocation({
+            url: item.url,
+            provider: "Europe PMC",
+            pdf: item.documentStyle === "pdf"
+          });
+          if (candidate) locations.push(candidate);
+        });
+
+      if (!openUrls.length && europePmc.pmcid) {
+        const candidate = buildOpenLocation({
+          url: `https://europepmc.org/articles/${europePmc.pmcid}`,
+          provider: "Europe PMC"
+        });
+        if (candidate) locations.push(candidate);
+      }
+    }
+  });
+
+  const deduped = locations
+    .filter(
+      (location, index, items) =>
+        items.findIndex((item) => item.url === location.url) === index
+    )
+    .sort((a, b) => Number(b.pdf) - Number(a.pdf))
+    .slice(0, 4);
+
+  fulltextLookupCache.set(cacheKey, { checkedAt: Date.now(), locations: deduped });
+  return deduped;
+};
+
+const renderOpenCopy = (location) => {
+  const meta = [
+    location.host,
+    location.version === "publishedVersion"
+      ? "正式发表版"
+      : location.version === "acceptedVersion"
+        ? "作者接受稿"
+        : location.version === "submittedVersion"
+          ? "作者投稿稿"
+          : "",
+    location.license ? location.license.toUpperCase() : ""
+  ].filter(Boolean);
+
+  return `
+    <a class="fulltext-open-copy" href="${escapeHtml(location.url)}" target="_blank" rel="noopener noreferrer">
+      <span class="fulltext-copy-icon">${location.pdf ? "PDF" : "WEB"}</span>
+      <span>
+        <strong>${location.pdf ? "直接打开开放 PDF" : "打开开放全文"}</strong>
+        <small>${escapeHtml(meta.join(" · "))}</small>
+      </span>
+      <i>↗</i>
+    </a>
+  `;
+};
+
+const renderFulltextLookup = async (guideline) => {
+  const helper = elements.drawerContent.querySelector(
+    `[data-fulltext-helper="${guideline.id}"]`
+  );
+  if (!helper) return;
+  const status = helper.querySelector("[data-fulltext-status]");
+  const results = helper.querySelector("[data-fulltext-results]");
+
+  if (!guideline.doi && !guideline.pmid) {
+    status.innerHTML = `<strong>可通过原始来源检索</strong><span>该记录没有 DOI / PMID，暂不执行自动开放副本查询。</span>`;
+    return;
+  }
+
+  status.innerHTML = `<strong>正在检查开放获取副本</strong><span>并行查询 OpenAlex 与 Europe PMC…</span>`;
+  try {
+    const locations = await lookupOpenCopies(guideline);
+    if (!locations.length) {
+      status.innerHTML = `<strong>暂未发现开放副本</strong><span>可使用下方合法入口或通过单位图书馆检索。</span>`;
+      results.innerHTML = "";
+      return;
+    }
+
+    status.innerHTML = `<strong>发现 ${locations.length} 个合法开放入口</strong><span>开放状态和许可可能变化，以来源页面为准。</span>`;
+    results.innerHTML = locations.map(renderOpenCopy).join("");
+  } catch {
+    status.innerHTML = `<strong>实时查询暂不可用</strong><span>仍可通过下方官方入口或单位图书馆获取。</span>`;
+    results.innerHTML = "";
+  }
+};
+
+const renderFulltextHelper = (guideline) => {
+  const routes = getFulltextRoutes(guideline)
+    .map(
+      (route) => `
+        <a href="${escapeHtml(safeExternalUrl(route.url))}" target="_blank" rel="noopener noreferrer">
+          ${escapeHtml(route.label)} <span>↗</span>
+        </a>
+      `
+    )
+    .join("");
+
+  return `
+    <section class="drawer-section fulltext-helper" data-fulltext-helper="${escapeHtml(guideline.id)}">
+      <div class="fulltext-helper-head">
+        <div>
+          <span>OPEN ACCESS FINDER</span>
+          <h3>全文获取助手</h3>
+        </div>
+        <em>合规入口</em>
+      </div>
+      <div class="fulltext-helper-status" data-fulltext-status aria-live="polite">
+        <strong>准备查询</strong>
+        <span>${guideline.localPdf ? "站内全文已可直接阅读，同时检查其他合法版本。" : "正在确认开放获取状态…"}</span>
+      </div>
+      <div class="fulltext-helper-results" data-fulltext-results></div>
+      <div class="fulltext-helper-routes">${routes}</div>
+      <div class="fulltext-helper-library">
+        <span>未找到开放全文时</span>
+        <p>使用医院或高校图书馆代理、馆际互借，或把题录发送给作者索取合法副本。</p>
+        <button type="button" data-copy-citation="${escapeHtml(guideline.id)}">复制文献题录</button>
+      </div>
+      <p class="fulltext-helper-note">仅汇总开放获取与官方入口，不绕过期刊、机构或账号权限。</p>
+    </section>
+  `;
+};
 
 const state = {
   organ: "all",
@@ -419,6 +690,7 @@ const openDrawer = (id) => {
         ? `<a class="drawer-original-link" href="${escapeHtml(guideline.officialUrl)}" target="_blank" rel="noopener noreferrer">查看原始来源 <span>↗</span></a>`
         : ""
     }
+    ${renderFulltextHelper(guideline)}
     <section class="drawer-section">
       <h3>收录摘要</h3>
       <p>${escapeHtml(guideline.summary)}</p>
@@ -485,6 +757,7 @@ const openDrawer = (id) => {
   elements.drawer.setAttribute("aria-hidden", "false");
   document.body.classList.add("drawer-open");
   document.querySelector("#closeDrawer").focus();
+  void renderFulltextLookup(guideline);
 };
 
 const closeDrawer = () => {
