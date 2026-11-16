@@ -1,5 +1,5 @@
 export const SITE_META = {
-  lastReviewed: "2026-11-15",
+  lastReviewed: "2026-11-16",
   reviewNote:
     "目录与官方入口已人工核验。实时版本、适用人群和推荐内容请始终以原始指南页面为准。"
 };
@@ -327,6 +327,38 @@ export const GUIDELINES = [
       "Chinese expert consensus on conversion and perioperative therapy of primary liver cancer (2024 edition). Hepatobiliary Surg Nutr. 2026;15(3):72.",
     pubmedTitle:
       "Chinese expert consensus on conversion and perioperative therapy of primary liver cancer (2024 edition)."
+  },
+  {
+    id: "hcc-brazil-consensus-2026",
+    title: "巴西肝癌预防、监测与早期发现多学科共识（2026）",
+    shortTitle: "Brazilian HCC Prevention & Surveillance Consensus",
+    organ: "liver",
+    region: "international",
+    type: "consensus",
+    source: "Brazilian Society of Surgical Oncology / 13 national societies",
+    sourceShort: "SBCO",
+    displayVersion: "2026",
+    updatedAt: "2026-08-17",
+    updatedLabel: "2026.08 在线发表",
+    featured: true,
+    status: "开放全文",
+    access: "open",
+    localPdf: "./assets/pdfs/hcc-brazil-consensus-2026.pdf",
+    localPdfPages: 20,
+    summary:
+      "由巴西外科肿瘤学会联合 13 家全国学会、43 名专家形成的肝癌共识，围绕 18 条推荐覆盖一级预防、风险分层监测、超声规范、小肝结节处理与选择性横断面影像。",
+    why:
+      "适合比较不同病因与资源环境下的肝癌筛查路径。其证据基础为非系统性文献回顾，具体监测策略仍需结合所在地区指南与医疗资源。",
+    scope: ["一级预防", "风险分层监测", "超声筛查", "小肝结节", "早期发现"],
+    officialUrl:
+      "https://www.scielo.br/j/abcd/a/JvH4krFcgJKzybcsD775VbL/?lang=en",
+    officialLabel: "直接阅读 SciELO 全文",
+    doi: "10.1590/0102-672020260000018e1947",
+    pmid: "42615769",
+    citation:
+      "Coimbra FJF, Godoy AL, Fernandes PHS, et al. Prevention, surveillance, and early detection of hepatocellular carcinoma - a Brazilian multidisciplinary consensus. Arq Bras Cir Dig. 2026;39:e1947.",
+    pubmedTitle:
+      "Prevention, surveillance, and early detection of hepatocellular carcinoma - a Brazilian multidisciplinary consensus."
   },
   {
     id: "btc-nccn",
@@ -1031,6 +1063,64 @@ export const GUIDELINES = [
       "REDISCOVER International Guidelines on the Perioperative Care of Surgical Patients With Borderline-resectable and Locally Advanced Pancreatic Cancer. Ann Surg. 2024;280(1):56-65.",
     pubmedTitle:
       "REDISCOVER International Guidelines on the Perioperative Care of Surgical Patients With Borderline-resectable and Locally Advanced Pancreatic Cancer."
+  },
+  {
+    id: "pdac-astro-2026",
+    title: "ASTRO 胰腺癌放射治疗临床实践指南（2026）",
+    shortTitle: "ASTRO Pancreatic Cancer RT Guideline 2026",
+    organ: "pancreas",
+    region: "international",
+    type: "focused",
+    source: "American Society for Radiation Oncology",
+    sourceShort: "ASTRO",
+    displayVersion: "2026",
+    updatedAt: "2026-08-11",
+    updatedLabel: "2026.08 在线发表",
+    featured: true,
+    status: "放疗专题",
+    access: "abstract",
+    summary:
+      "基于系统文献回顾和分级共识方法，覆盖可切除、交界可切除、局部晚期、转移及姑息场景的放疗适应证、时机、剂量分割、靶区和实施技术。",
+    why:
+      "适合放疗科与胰腺 MDT 在围手术期、局部晚期和姑息治疗中核对放疗角色。该指南不替代外科、内科及影像专科对完整治疗路径的判断。",
+    scope: ["放疗适应证", "剂量分割", "靶区", "局部晚期", "姑息治疗"],
+    officialUrl: "https://pubmed.ncbi.nlm.nih.gov/42580553/",
+    officialLabel: "查看 PubMed 摘要与原文入口",
+    doi: "10.1016/j.prro.2026.07.002",
+    pmid: "42580553",
+    citation:
+      "Chuong MD, Jethwa KR, Ludmir E, et al. Radiation Therapy for Pancreatic Cancer: An ASTRO Clinical Practice Guideline. Pract Radiat Oncol. 2026;16(6):598-625.",
+    pubmedTitle:
+      "Radiation Therapy for Pancreatic Cancer: An ASTRO Clinical Practice Guideline."
+  },
+  {
+    id: "pdac-danish-ipmn-2026",
+    title: "丹麦胰腺癌协作组胰腺 IPMN 管理共识（2026）",
+    shortTitle: "Danish Pancreatic IPMN Consensus 2026",
+    organ: "pancreas",
+    region: "international",
+    type: "consensus",
+    source: "Danish Pancreatic Cancer Group",
+    sourceShort: "DPCG",
+    displayVersion: "2026",
+    updatedAt: "2026-09-01",
+    updatedLabel: "2026.09 在线发表",
+    featured: false,
+    status: "IPMN 共识",
+    access: "abstract",
+    summary:
+      "放射科与胰腺外科多学科共识，建议以 MRI/MRCP 作为胰腺 IPMN 诊断和监测的主要方式，按高危征象、可疑特征和随访间变化进行风险分层。",
+    why:
+      "适合胰腺囊性病变门诊与 MDT 讨论。共识基于叙述性文献回顾、既有国际指南和专家讨论，未采用正式 Delphi 流程，适用性需结合当地监测体系。",
+    scope: ["IPMN", "MRI/MRCP", "风险分层", "随访终止", "手术评估"],
+    officialUrl: "https://pubmed.ncbi.nlm.nih.gov/42678719/",
+    officialLabel: "查看 PubMed 摘要与原文入口",
+    doi: "10.1177/02841851261477089",
+    pmid: "42678719",
+    citation:
+      "Abdolalizadeh B, Fristrup C, Larsen LP, Fallentin E, Ewertsen C. Danish Pancreatic Cancer Group consensus guidelines on the management of pancreatic IPMN. Acta Radiol. 2026;67(10):859-867.",
+    pubmedTitle:
+      "Danish Pancreatic Cancer Group consensus guidelines on the management of pancreatic IPMN."
   }
 ];
 

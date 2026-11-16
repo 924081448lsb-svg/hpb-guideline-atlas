@@ -18,5 +18,6 @@ These files were downloaded from publicly accessible pages and are served locall
 | `pdac-rediscover-2024.pdf` | 10 | PMC / Annals of Surgery | Open access |
 | `bdi-life-meta-2025.pdf` | 23 | PMC / Life (Basel) | CC BY |
 | `bdi-minimally-invasive-2026.pdf` | 19 | PMC / Surgical Endoscopy | CC BY |
+| `hcc-brazil-consensus-2026.pdf` | 20 | SciELO / Arq Bras Cir Dig | CC BY |
 
 PDFs that require a subscription, institutional login, or NCCN registration are not mirrored locally.
